@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Power Values Playbook</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -179,17 +180,37 @@
 
             .bracket-col {
                 width: 100%;
-                margin-bottom: 2rem; /* Add some spacing between stacked columns */
+                margin-bottom: 2rem;
             }
 
             .bracket-col:last-child {
                 margin-bottom: 0;
             }
 
-            .space-y-8, .space-y-16, .space-y-32, .space-y-6 {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
+            .bracket-col > div {
+                margin-bottom: 1rem;
+            }
+
+            .bracket-col > div.space-y-8,
+            .bracket-col > div.space-y-16,
+            .bracket-col > div.space-y-32,
+            .bracket-col > div.space-y-6 {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            .bracket-col > div:not(:last-child) {
+                border-bottom: 1px dashed #e0e0e0;
+                padding-bottom: 1rem;
+            }
+
+            /* New rules for mobile layout */
+            .bracket-col .space-y-2.mb-4,
+            .bracket-col .space-y-8,
+            .bracket-col .space-y-16,
+            .bracket-col .space-y-32,
+            .bracket-col .space-y-6 {
+                margin-top: 1rem;
             }
         }
     </style>
@@ -200,7 +221,7 @@
         <div class="text-center">
             <img src="images/Power Values logo with tagline.png" alt="Power Values Logo" class="mx-auto h-36 w-auto mb-2">
             <h1 class="text-4xl md:text-5xl font-bold text-brand-dark-teal">The Power Values Playbook</h1>
-            <p class="text-lg text-brand-maroon mt-2">Your Guide to a Life of Alignment & Purpose</p>
+            <p class="text-base md:text-lg text-brand-maroon mt-2">Your Guide to a Life of Alignment & Purpose</p>
         </div>
     </header>
 
@@ -274,57 +295,80 @@
                 <div class="w-full p-6 bg-brand-teal/10 rounded-xl border border-brand-teal/30">
                     <p class="text-center text-brand-dark-teal font-medium mb-6">Start with your ten core values. Pit them against each other in a tournament to discover what truly matters most.</p>
                     <div class="bracket-container flex items-stretch space-x-4 md:space-x-6">
+                        
                         <div class="bracket-col w-full md:w-1/5">
+                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center no-print">Round 1: Initial Values</h3>
                             <div class="space-y-2 mb-4">
-                                <input type="text" id="bracket-initial-1a" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
-                                <input type="text" id="bracket-initial-1b" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Match 1</label>
+                                <input type="text" id="bracket-initial-1a" placeholder="Value 1" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <input type="text" id="bracket-initial-1b" placeholder="Value 2" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
                             </div>
                             <div class="space-y-2 mb-4">
-                                <input type="text" id="bracket-initial-2a" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
-                                <input type="text" id="bracket-initial-2b" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Match 2</label>
+                                <input type="text" id="bracket-initial-2a" placeholder="Value 3" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <input type="text" id="bracket-initial-2b" placeholder="Value 4" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
                             </div>
                             <div class="space-y-2 mb-4">
-                                <input type="text" id="bracket-initial-3a" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
-                                <input type="text" id="bracket-initial-3b" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Match 3</label>
+                                <input type="text" id="bracket-initial-3a" placeholder="Value 5" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <input type="text" id="bracket-initial-3b" placeholder="Value 6" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
                             </div>
                             <div class="space-y-2 mb-4">
-                                <input type="text" id="bracket-initial-4a" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
-                                <input type="text" id="bracket-initial-4b" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Match 4</label>
+                                <input type="text" id="bracket-initial-4a" placeholder="Value 7" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <input type="text" id="bracket-initial-4b" placeholder="Value 8" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
                             </div>
                             <div class="space-y-2">
-                                <input type="text" id="bracket-initial-5a" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
-                                <input type="text" id="bracket-initial-5b" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Match 5</label>
+                                <input type="text" id="bracket-initial-5a" placeholder="Value 9" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <input type="text" id="bracket-initial-5b" placeholder="Value 10" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
                             </div>
                         </div>
                         
                         <div class="bracket-col w-full md:w-1/5">
+                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center no-print">Round 2: Winners</h3>
                             <div class="space-y-8">
-                                <input type="text" id="bracket-r1-1" placeholder="Winner..." class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
-                                <input type="text" id="bracket-r1-2" placeholder="Winner..." class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
-                                <input type="text" id="bracket-r1-3" placeholder="Winner..." class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
-                                <input type="text" id="bracket-r1-4" placeholder="Winner..." class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
-                                <input type="text" id="bracket-r1-5" placeholder="Winner..." class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match 1)</label>
+                                <input type="text" id="bracket-r1-1" placeholder="Winner" class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match 2)</label>
+                                <input type="text" id="bracket-r1-2" placeholder="Winner" class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match 3)</label>
+                                <input type="text" id="bracket-r1-3" placeholder="Winner" class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match 4)</label>
+                                <input type="text" id="bracket-r1-4" placeholder="Winner" class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match 5)</label>
+                                <input type="text" id="bracket-r1-5" placeholder="Winner" class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
                             </div>
                         </div>
                         
                         <div class="bracket-col w-full md:w-1/5">
+                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center no-print">Round 3: Elite 8</h3>
                             <div class="space-y-16 py-8">
-                                <input type="text" id="bracket-r2-1" placeholder="Winner..." class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input" required>
-                                <input type="text" id="bracket-r2-2" placeholder="Winner..." class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input" required>
-                                <input type="text" id="bracket-r2-3" placeholder="Bye..." class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Matches 1 & 2)</label>
+                                <input type="text" id="bracket-r2-1" placeholder="Winner" class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Matches 3 & 4)</label>
+                                <input type="text" id="bracket-r2-2" placeholder="Winner" class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match 5)</label>
+                                <input type="text" id="bracket-r2-3" placeholder="Bye" class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input" required>
                             </div>
                         </div>
                         
                         <div class="bracket-col w-full md:w-1/5">
+                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center no-print">Round 4: Final 4</h3>
                             <div class="space-y-32 py-16">
-                                <input type="text" id="bracket-r3-1" placeholder="Winner..." class="w-full p-2 border-2 border-brand-dark-pink rounded-lg value-input bg-brand-dark-pink/20 text-sm bracket-input" required>
-                                <input type="text" id="bracket-r3-2" placeholder="Winner..." class="w-full p-2 border-2 border-brand-dark-pink rounded-lg value-input bg-brand-dark-pink/20 text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Matches 1-4)</label>
+                                <input type="text" id="bracket-r3-1" placeholder="Winner" class="w-full p-2 border-2 border-brand-dark-pink rounded-lg value-input bg-brand-dark-pink/20 text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match 5)</label>
+                                <input type="text" id="bracket-r3-2" placeholder="Winner" class="w-full p-2 border-2 border-brand-dark-pink rounded-lg value-input bg-brand-dark-pink/20 text-sm bracket-input" required>
                             </div>
                         </div>
                         
                         <div class="bracket-col w-full md:w-1/5 justify-center">
+                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center no-print">Final Round</h3>
                             <div class="space-y-6 py-24">
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Your TOP Value</label>
                                 <input type="text" id="bracket-final-winner" placeholder="TOP VALUE" class="w-full p-3 text-center font-bold border-4 border-brand-yellow rounded-lg value-input bg-brand-yellow/20 bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Your Runner Up</label>
                                 <input type="text" id="bracket-second-place" placeholder="Runner Up" class="w-full p-2 text-center border-2 border-red-300 rounded-lg value-input bg-red-100/50 text-sm bracket-input" required>
                             </div>
                         </div>
@@ -364,16 +408,27 @@
 
     <script>
         const powerValues = [
-            "Acceptance", "Accountability", "Adaptability", "Adventure", "Altruism", "Ambition", "Authenticity", "Autonomy", "Awe", "Agency", 
-            "Bliss", "Collaboration", "Community", "Compassion", "Courage", "Creativity", "Curiosity", "Congruence", "Confidence", "Detachment", 
-            "Dignity", "Diligence", "Diversity", "Discipline", "Education", "Emotional Intelligence", "Empathy", "Enthusiasm", "Equality", 
-            "Equanimity", "Evolution", "Exploration", "Exuberance", "Fairness", "Faith", "Family", "Focus", "Forgiveness", "Freedom", 
-            "Friendship", "Fun", "Fulfillment", "Generosity", "Gratitude", "Grace", "Harmony", "Healing", "Health", "Honesty", "Hope", 
-            "Humility", "Humor", "Imagination", "Impact", "Improvement", "Independence", "Initiative", "Innovation", "Integrity", "Joy", 
-            "Justice", "Kindness", "Leadership", "Love", "Loyalty", "Mastery", "Mindfulness", "Nature", "Openness", "Optimism", "Patience", 
-            "Peace", "Perseverance", "Playfulness", "Presence", "Perspective", "Reconciliation", "Relationships", "Reliability", "Resilience", 
-            "Respect", "Responsibility", "Reverence", "Security", "Self-Awareness", "Simplicity", "Spontaneity", "Sustainability", "Teamwork", 
-            "Tenacity", "Transparency", "Trustworthiness", "Unboundedness", "Vigor", "Vision", "Vitality", "Vulnerability", "Wisdom", "Zest"
+            "Acceptance", "Accountability", "Adaptability", "Adventure", "Agency", "Altruism", "Ambition", "Authenticity", "Autonomy", "Awe",
+            "Bliss", "Collaboration", "Community", "Compassion", "Confidence", "Congruence", "Courage", "Creativity", "Curiosity",
+            "Detachment", "Dignity", "Diligence", "Discipline", "Diversity",
+            "Education", "Emotional Intelligence", "Empathy", "Enthusiasm", "Equality", "Equanimity", "Evolution", "Exploration", "Exuberance",
+            "Fairness", "Faith", "Family", "Focus", "Forgiveness", "Freedom", "Friendship", "Fulfillment", "Fun",
+            "Generosity", "Grace", "Gratitude", "Harmony", "Healing", "Health", "Honesty", "Hope", "Humility", "Humor",
+            "Imagination", "Impact", "Improvement", "Inclusiveness", "Independence", "Initiative", "Innovation", "Integrity",
+            "Joy", "Justice",
+            "Kindness",
+            "Leadership", "Love", "Loyalty",
+            "Mastery", "Mindfulness",
+            "Nature",
+            "Openness", "Optimism",
+            "Patience", "Peace", "Perseverance", "Perspective", "Playfulness", "Presence",
+            "Reconciliation", "Relationships", "Reliability", "Resilience", "Respect", "Responsibility", "Reverence",
+            "Security", "Self-Awareness", "Simplicity", "Spontaneity", "Sustainability",
+            "Teamwork", "Tenacity", "Transparency", "Trustworthiness",
+            "Unboundedness",
+            "Vigor", "Vitality", "Vision", "Vulnerability",
+            "Wisdom",
+            "Zest"
         ];
 
         // Global variables
@@ -439,13 +494,16 @@
                 }
                 
                 // Populate the bracket with selected values
-                for (let i = 0; i < 10; i++) {
-                    if (i < 5) {
-                        document.getElementById(`bracket-initial-${i+1}a`).value = selectedValues[i];
-                    } else {
-                        document.getElementById(`bracket-initial-${i-4}b`).value = selectedValues[i];
-                    }
-                }
+                document.getElementById(`bracket-initial-1a`).value = selectedValues[0] || '';
+                document.getElementById(`bracket-initial-1b`).value = selectedValues[1] || '';
+                document.getElementById(`bracket-initial-2a`).value = selectedValues[2] || '';
+                document.getElementById(`bracket-initial-2b`).value = selectedValues[3] || '';
+                document.getElementById(`bracket-initial-3a`).value = selectedValues[4] || '';
+                document.getElementById(`bracket-initial-3b`).value = selectedValues[5] || '';
+                document.getElementById(`bracket-initial-4a`).value = selectedValues[6] || '';
+                document.getElementById(`bracket-initial-4b`).value = selectedValues[7] || '';
+                document.getElementById(`bracket-initial-5a`).value = selectedValues[8] || '';
+                document.getElementById(`bracket-initial-5b`).value = selectedValues[9] || '';
                 
                 powerValuesSection.classList.add('hidden');
                 hierarchySection.classList.remove('hidden');
@@ -472,8 +530,63 @@
                     showNotification('error', 'Please complete all fields in the bracket.');
                     return;
                 }
+
+                // Create the final data object
+                const finalData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    selectedValues: selectedValues,
+                    valueHierarchy: {
+                        round1: {
+                            match1: {
+                                valueA: document.getElementById('bracket-initial-1a').value,
+                                valueB: document.getElementById('bracket-initial-1b').value,
+                            },
+                            match2: {
+                                valueA: document.getElementById('bracket-initial-2a').value,
+                                valueB: document.getElementById('bracket-initial-2b').value,
+                            },
+                            match3: {
+                                valueA: document.getElementById('bracket-initial-3a').value,
+                                valueB: document.getElementById('bracket-initial-3b').value,
+                            },
+                            match4: {
+                                valueA: document.getElementById('bracket-initial-4a').value,
+                                valueB: document.getElementById('bracket-initial-4b').value,
+                            },
+                            match5: {
+                                valueA: document.getElementById('bracket-initial-5a').value,
+                                valueB: document.getElementById('bracket-initial-5b').value,
+                            },
+                        },
+                        round2: {
+                            winner1: document.getElementById('bracket-r1-1').value,
+                            winner2: document.getElementById('bracket-r1-2').value,
+                            winner3: document.getElementById('bracket-r1-3').value,
+                            winner4: document.getElementById('bracket-r1-4').value,
+                            winner5: document.getElementById('bracket-r1-5').value,
+                        },
+                        round3: {
+                            winner1: document.getElementById('bracket-r2-1').value,
+                            winner2: document.getElementById('bracket-r2-2').value,
+                            winner3: document.getElementById('bracket-r2-3').value,
+                        },
+                        round4: {
+                            winner1: document.getElementById('bracket-r3-1').value,
+                            winner2: document.getElementById('bracket-r3-2').value,
+                        },
+                        finalResults: {
+                            topValue: document.getElementById('bracket-final-winner').value,
+                            runnerUp: document.getElementById('bracket-second-place').value,
+                        }
+                    }
+                };
+
+                // Log the final object to the console for the backend developer
+                console.log('Final Data Object for Backend:', finalData);
                 
-                // Show thank you modal
+                // For now, we will just show the modal directly since there's no backend
                 updateProgress(3);
                 thankYouModal.style.display = 'flex';
             });
