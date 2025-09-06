@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Power Values Playbook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Lato:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // Configure Tailwind CSS with the custom brand color palette
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-yellow': '#f9e266',
+                        'brand-teal': '#5fa3b0',
+                        'brand-dark-teal': '#1c6264',
+                        'brand-maroon': '#5e253a',
+                        'brand-pink': '#de97b2',
+                        'brand-off-white': '#fffbfd',
+                        'brand-dark-pink': '#853256',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Karla', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fffbfd 0%, #f8f4ff 100%);
+        }
+        main {
+            flex-grow: 1;
+        }
+        h1, h2, h3 {
+            font-family: 'Lato', sans-serif;
+            font-weight: 900;
+        }
+        .playbook-container {
+            max-width: 1000px;
+            margin: auto;
+        }
+        .value-input {
+            transition: all 0.3s ease;
+        }
+        .value-input:focus {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(95, 163, 176, 0.4);
+            border-color: #5fa3b0;
+        }
+        .notification {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .validation-error {
+            border-color: #ef4444;
+            box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+        }
+        .bracket-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            flex-grow: 1;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .value-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .value-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .value-card.selected {
+            background: linear-gradient(135deg, #5e253a 0%, #853256 100%);
+            color: white;
+            border-color: #5e253a;
+        }
+        .section-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #5fa3b0;
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Animation for submit button highlight */
+        @keyframes pulse-animation {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(140, 50, 86, 0.7); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(140, 50, 86, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(140, 50, 86, 0); }
+        }
+        .pulse-highlight {
+            animation: pulse-animation 1.5s ease-out;
+        }
+        
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #5e253a;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background-color: #e5e7eb;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #5e253a 0%, #853256 100%);
+            border-radius: 44px;
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive bracket adjustments */
+        @media (max-width: 767px) {
+            .bracket-container {
+                flex-direction: column;
+                min-width: unset;
+                overflow-x: hidden;
+            }
+
+            .bracket-col {
+                width: 100%;
+                margin-bottom: 2rem; /* Add some spacing between stacked columns */
+            }
+
+            .bracket-col:last-child {
+                margin-bottom: 0;
+            }
+
+            .space-y-8, .space-y-16, .space-y-32, .space-y-6 {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-brand-off-white text-brand-maroon">
+
+    <header class="w-full flex justify-center py-2 bg-white">
+        <div class="text-center">
+            <img src="images/Power Values logo with tagline.png" alt="Power Values Logo" class="mx-auto h-36 w-auto mb-2">
+            <h1 class="text-4xl md:text-5xl font-bold text-brand-dark-teal">The Power Values Playbook</h1>
+            <p class="text-lg text-brand-maroon mt-2">Your Guide to a Life of Alignment & Purpose</p>
+        </div>
+    </header>
+
+    <main class="playbook-container p-4 md:p-6 mt-4">
+
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
+        </div>
+
+        <section id="contact-form-section" class="bg-white p-6 md:p-8 rounded-2xl shadow-lg card-hover">
+            <div class="text-center mb-6">
+                <div class="section-icon">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-brand-maroon mb-2">Step 1: Your Information</h2>
+                <p class="text-lg text-gray-600">Enter your information to get started with your Power Values journey.</p>
+            </div>
+            
+            <form id="contact-form" class="space-y-5">
+                <div>
+                    <label for="name" class="block text-brand-dark-teal font-bold mb-2"><i class="fas fa-user text-brand-teal mr-2"></i>Name</label>
+                    <input type="text" id="name" name="name" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-brand-dark-teal font-bold mb-2"><i class="fas fa-envelope text-brand-teal mr-2"></i>Email</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal" required>
+                </div>
+                <div>
+                    <label for="phone" class="block text-brand-dark-teal font-bold mb-2"><i class="fas fa-phone text-brand-teal mr-2"></i>Phone Number (Optional)</label>
+                    <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal">
+                </div>
+                <button type="button" id="contact-submit" class="w-full bg-brand-dark-pink text-white font-bold py-3 px-6 rounded-lg hover:bg-brand-maroon transition-all duration-300 transform hover:scale-[1.02] shadow-md flex items-center justify-center">
+                    <i class="fas fa-arrow-right mr-2"></i> Continue to Values Selection
+                </button>
+            </form>
+        </section>
+
+        <section id="power-values-list" class="my-12 hidden">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg card-hover">
+                <div class="text-center mb-6">
+                    <div class="section-icon">
+                        <i class="fas fa-list-ol"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-brand-maroon mb-2">Step 2: Select Your Core Values</h2>
+                    <p class="text-lg text-gray-600">Select your top 10 values from the list below</p>
+                </div>
+                
+                <div class="bg-brand-teal/10 p-4 rounded-lg mb-6">
+                    <p class="text-brand-dark-teal text-center"><i class="fas fa-info-circle mr-2"></i>You've selected <span id="selected-count">0</span> of 10 values</p>
+                </div>
+                
+                <div id="values-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 text-center">
+                    </div>
+                
+                <button id="values-submit" class="mt-6 w-full bg-brand-dark-pink text-white font-bold py-3 px-6 rounded-lg hover:bg-brand-maroon transition-all duration-300 transform hover:scale-[1.02] shadow-md flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    <i class="fas fa-arrow-right mr-2"></i> Continue to Value Hierarchy
+                </button>
+            </div>
+        </section>
+
+        <section id="value-hierarchy-section" class="my-12 hidden">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg card-hover">
+                <div class="text-center mb-6">
+                    <div class="section-icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-brand-maroon mb-2">Step 3: Map Your Value Hierarchy</h2>
+                    <p class="text-lg text-gray-600">Enter your selected values in the bracket below to prioritize them</p>
+                </div>
+                
+                <div class="w-full p-6 bg-brand-teal/10 rounded-xl border border-brand-teal/30">
+                    <p class="text-center text-brand-dark-teal font-medium mb-6">Start with your ten core values. Pit them against each other in a tournament to discover what truly matters most.</p>
+                    <div class="bracket-container flex items-stretch space-x-4 md:space-x-6">
+                        <div class="bracket-col w-full md:w-1/5">
+                            <div class="space-y-2 mb-4">
+                                <input type="text" id="bracket-initial-1a" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <input type="text" id="bracket-initial-1b" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                            </div>
+                            <div class="space-y-2 mb-4">
+                                <input type="text" id="bracket-initial-2a" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <input type="text" id="bracket-initial-2b" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                            </div>
+                            <div class="space-y-2 mb-4">
+                                <input type="text" id="bracket-initial-3a" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <input type="text" id="bracket-initial-3b" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                            </div>
+                            <div class="space-y-2 mb-4">
+                                <input type="text" id="bracket-initial-4a" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <input type="text" id="bracket-initial-4b" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                            </div>
+                            <div class="space-y-2">
+                                <input type="text" id="bracket-initial-5a" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <input type="text" id="bracket-initial-5b" placeholder="Value..." class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                            </div>
+                        </div>
+                        
+                        <div class="bracket-col w-full md:w-1/5">
+                            <div class="space-y-8">
+                                <input type="text" id="bracket-r1-1" placeholder="Winner..." class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
+                                <input type="text" id="bracket-r1-2" placeholder="Winner..." class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
+                                <input type="text" id="bracket-r1-3" placeholder="Winner..." class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
+                                <input type="text" id="bracket-r1-4" placeholder="Winner..." class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
+                                <input type="text" id="bracket-r1-5" placeholder="Winner..." class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
+                            </div>
+                        </div>
+                        
+                        <div class="bracket-col w-full md:w-1/5">
+                            <div class="space-y-16 py-8">
+                                <input type="text" id="bracket-r2-1" placeholder="Winner..." class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input" required>
+                                <input type="text" id="bracket-r2-2" placeholder="Winner..." class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input" required>
+                                <input type="text" id="bracket-r2-3" placeholder="Bye..." class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input" required>
+                            </div>
+                        </div>
+                        
+                        <div class="bracket-col w-full md:w-1/5">
+                            <div class="space-y-32 py-16">
+                                <input type="text" id="bracket-r3-1" placeholder="Winner..." class="w-full p-2 border-2 border-brand-dark-pink rounded-lg value-input bg-brand-dark-pink/20 text-sm bracket-input" required>
+                                <input type="text" id="bracket-r3-2" placeholder="Winner..." class="w-full p-2 border-2 border-brand-dark-pink rounded-lg value-input bg-brand-dark-pink/20 text-sm bracket-input" required>
+                            </div>
+                        </div>
+                        
+                        <div class="bracket-col w-full md:w-1/5 justify-center">
+                            <div class="space-y-6 py-24">
+                                <input type="text" id="bracket-final-winner" placeholder="TOP VALUE" class="w-full p-3 text-center font-bold border-4 border-brand-yellow rounded-lg value-input bg-brand-yellow/20 bracket-input" required>
+                                <input type="text" id="bracket-second-place" placeholder="Runner Up" class="w-full p-2 text-center border-2 border-red-300 rounded-lg value-input bg-red-100/50 text-sm bracket-input" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="hierarchy-submit" class="mt-6 w-full bg-brand-dark-pink text-white font-bold py-3 px-6 rounded-lg hover:bg-brand-maroon transition-all duration-300 transform hover:scale-[1.02] shadow-md flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    <i class="fas fa-check-circle mr-2"></i> Complete Your Power Values Assessment
+                </button>
+            </div>
+        </section>
+
+        <div id="thank-you-modal" class="modal">
+            <div class="modal-content relative">
+                <span class="modal-close" id="modal-close">&times;</span>
+                <div class="section-icon">
+                    <i class="fas fa-check-circle text-brand-teal"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-brand-dark-teal mb-4">Thank You!</h2>
+                <p class="text-brand-maroon mb-4">Your Power Values assessment has been successfully submitted.</p>
+                <p class="text-brand-dark-teal font-medium mb-6">If you don't see our email, please check your spam folder.</p>
+                <button id="modal-button" class="bg-brand-dark-pink text-white font-bold py-2 px-6 rounded-lg hover:bg-brand-maroon transition-colors">
+                    Done
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="w-full py-6 mt-8 bg-brand-dark-teal text-white">
+        <div class="playbook-container text-center">
+            <p class="text-brand-off-white">&copy; 2025 The Power Values Playbook</p>
+        </div>
+    </footer>
+
+    <div id="error-notification" class="notification fixed bottom-5 right-5 bg-red-600 text-white py-3 px-5 rounded-lg shadow-xl opacity-0 transform translate-y-3">
+    </div>
+
+    <script>
+        const powerValues = [
+            "Acceptance", "Accountability", "Adaptability", "Adventure", "Altruism", "Ambition", "Authenticity", "Autonomy", "Awe", "Agency", 
+            "Bliss", "Collaboration", "Community", "Compassion", "Courage", "Creativity", "Curiosity", "Congruence", "Confidence", "Detachment", 
+            "Dignity", "Diligence", "Diversity", "Discipline", "Education", "Emotional Intelligence", "Empathy", "Enthusiasm", "Equality", 
+            "Equanimity", "Evolution", "Exploration", "Exuberance", "Fairness", "Faith", "Family", "Focus", "Forgiveness", "Freedom", 
+            "Friendship", "Fun", "Fulfillment", "Generosity", "Gratitude", "Grace", "Harmony", "Healing", "Health", "Honesty", "Hope", 
+            "Humility", "Humor", "Imagination", "Impact", "Improvement", "Independence", "Initiative", "Innovation", "Integrity", "Joy", 
+            "Justice", "Kindness", "Leadership", "Love", "Loyalty", "Mastery", "Mindfulness", "Nature", "Openness", "Optimism", "Patience", 
+            "Peace", "Perseverance", "Playfulness", "Presence", "Perspective", "Reconciliation", "Relationships", "Reliability", "Resilience", 
+            "Respect", "Responsibility", "Reverence", "Security", "Self-Awareness", "Simplicity", "Spontaneity", "Sustainability", "Teamwork", 
+            "Tenacity", "Transparency", "Trustworthiness", "Unboundedness", "Vigor", "Vision", "Vitality", "Vulnerability", "Wisdom", "Zest"
+        ];
+
+        // Global variables
+        let selectedValues = [];
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactFormSection = document.getElementById('contact-form-section');
+            const powerValuesSection = document.getElementById('power-values-list');
+            const hierarchySection = document.getElementById('value-hierarchy-section');
+            const valuesGrid = document.getElementById('values-grid');
+            const selectedCount = document.getElementById('selected-count');
+            const contactSubmitBtn = document.getElementById('contact-submit');
+            const valuesSubmitBtn = document.getElementById('values-submit');
+            const hierarchySubmitBtn = document.getElementById('hierarchy-submit');
+            const thankYouModal = document.getElementById('thank-you-modal');
+            const modalClose = document.getElementById('modal-close');
+            const modalButton = document.getElementById('modal-button');
+            const progressBar = document.getElementById('progress-bar');
+            
+            // Update progress bar
+            function updateProgress(step) {
+                const progressPercentage = (step / 3) * 100;
+                progressBar.style.width = `${progressPercentage}%`;
+            }
+
+            // Populate the power values grid
+            powerValues.forEach(value => {
+                const valueElement = document.createElement('div');
+                valueElement.textContent = value;
+                valueElement.className = 'value-card bg-white p-3 rounded-xl border border-brand-teal shadow-sm';
+                valueElement.addEventListener('click', function() {
+                    toggleValueSelection(valueElement, value);
+                });
+                valuesGrid.appendChild(valueElement);
+            });
+
+            // Contact form submission
+            contactSubmitBtn.addEventListener('click', function() {
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                
+                if (!name || !email) {
+                    showNotification('error', 'Please fill in all required fields.');
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    showNotification('error', 'Please enter a valid email address.');
+                    return;
+                }
+                
+                contactFormSection.classList.add('hidden');
+                powerValuesSection.classList.remove('hidden');
+                updateProgress(1);
+                powerValuesSection.scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // Values selection submission
+            valuesSubmitBtn.addEventListener('click', function() {
+                if (selectedValues.length !== 10) {
+                    showNotification('error', 'Please select exactly 10 values.');
+                    return;
+                }
+                
+                // Populate the bracket with selected values
+                for (let i = 0; i < 10; i++) {
+                    if (i < 5) {
+                        document.getElementById(`bracket-initial-${i+1}a`).value = selectedValues[i];
+                    } else {
+                        document.getElementById(`bracket-initial-${i-4}b`).value = selectedValues[i];
+                    }
+                }
+                
+                powerValuesSection.classList.add('hidden');
+                hierarchySection.classList.remove('hidden');
+                updateProgress(2);
+                hierarchySection.scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // Hierarchy submission
+            hierarchySubmitBtn.addEventListener('click', function() {
+                // Validate all bracket fields are filled
+                const bracketInputs = document.querySelectorAll('.bracket-input');
+                let allFilled = true;
+                
+                bracketInputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        input.classList.add('validation-error');
+                        allFilled = false;
+                    } else {
+                        input.classList.remove('validation-error');
+                    }
+                });
+                
+                if (!allFilled) {
+                    showNotification('error', 'Please complete all fields in the bracket.');
+                    return;
+                }
+                
+                // Show thank you modal
+                updateProgress(3);
+                thankYouModal.style.display = 'flex';
+            });
+
+            // Modal close handlers
+            modalClose.addEventListener('click', function() {
+                thankYouModal.style.display = 'none';
+            });
+            
+            modalButton.addEventListener('click', function() {
+                thankYouModal.style.display = 'none';
+            });
+
+            // Close modal if clicked outside
+            window.addEventListener('click', function(event) {
+                if (event.target === thankYouModal) {
+                    thankYouModal.style.display = 'none';
+                }
+            });
+
+            // Enable hierarchy submit button when all bracket fields are filled
+            const bracketInputs = document.querySelectorAll('.bracket-input');
+            bracketInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    checkBracketCompletion();
+                });
+            });
+        });
+
+        // Toggle value selection
+        function toggleValueSelection(element, value) {
+            if (element.classList.contains('selected')) {
+                // Deselect the value
+                element.classList.remove('selected');
+                selectedValues = selectedValues.filter(v => v !== value);
+            } else {
+                // Check if we can select more values
+                if (selectedValues.length >= 10) {
+                    showNotification('error', 'You can only select 10 values.');
+                    return;
+                }
+                
+                // Select the value
+                element.classList.add('selected');
+                selectedValues.push(value);
+            }
+            
+            // Update selected count
+            document.getElementById('selected-count').textContent = selectedValues.length;
+            
+            // Enable/disable the submit button
+            document.getElementById('values-submit').disabled = selectedValues.length !== 10;
+        }
+
+        function checkBracketCompletion() {
+            const bracketInputs = document.querySelectorAll('.bracket-input');
+            let allFilled = true;
+            
+            bracketInputs.forEach(input => {
+                if (!input.value.trim()) {
+                    allFilled = false;
+                }
+            });
+            
+            document.getElementById('hierarchy-submit').disabled = !allFilled;
+        }
+
+        function isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function showNotification(type, message) {
+            const notification = document.getElementById('error-notification');
+            
+            notification.textContent = message;
+            notification.classList.remove('opacity-0', 'translate-y-3');
+            notification.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                notification.classList.remove('opacity-100', 'translate-y-0');
+                notification.classList.add('opacity-0', 'translate-y-3');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
