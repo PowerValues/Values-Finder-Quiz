@@ -170,7 +170,7 @@
             transition: width 0.3s ease;
         }
 
-        /* Responsive bracket adjustments */
+        /* Responsive bracket adjustments for mobile */
         @media (max-width: 767px) {
             .bracket-container {
                 flex-direction: column;
@@ -204,13 +204,51 @@
                 padding-bottom: 1rem;
             }
 
-            /* New rules for mobile layout */
             .bracket-col .space-y-2.mb-4,
             .bracket-col .space-y-8,
             .bracket-col .space-y-16,
             .bracket-col .space-y-32,
             .bracket-col .space-y-6 {
                 margin-top: 1rem;
+            }
+        }
+        
+        /* Desktop-specific styling for alignment */
+        @media (min-width: 768px) {
+            .bracket-title-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start; /* Align titles to the top */
+                margin-bottom: 1.5rem;
+            }
+
+            .bracket-title {
+                flex: 1; /* Distribute space evenly */
+                text-align: center;
+                font-family: 'Lato', sans-serif;
+                font-weight: 900;
+                color: #1c6264;
+                margin-bottom: 0;
+                display: block; /* Ensures h3 titles take up their own space */
+            }
+
+            /* Fine-tune alignment for titles relative to their content columns */
+            .bracket-title-initial {
+                text-align: left;
+                padding-left: 1rem;
+            }
+            .bracket-title-r1 {
+                text-align: center;
+            }
+            .bracket-title-r2 {
+                text-align: center;
+            }
+            .bracket-title-r3 {
+                text-align: center;
+            }
+            .bracket-title-final {
+                text-align: right;
+                padding-right: 1rem;
             }
         }
     </style>
@@ -294,10 +332,19 @@
                 
                 <div class="w-full p-6 bg-brand-teal/10 rounded-xl border border-brand-teal/30">
                     <p class="text-center text-brand-dark-teal font-medium mb-6">Start with your ten core values. Pit them against each other in a tournament to discover what truly matters most.</p>
+                    
+                    <div class="bracket-title-container hidden md:flex">
+                        <h3 class="bracket-title bracket-title-initial">Round 1: Initial Values</h3>
+                        <h3 class="bracket-title bracket-title-r1">Round 2: Winners</h3>
+                        <h3 class="bracket-title bracket-title-r2">Round 3: Elite 8</h3>
+                        <h3 class="bracket-title bracket-title-r3">Round 4: Final 4</h3>
+                        <h3 class="bracket-title bracket-title-final">Final Round</h3>
+                    </div>
+
                     <div class="bracket-container flex items-stretch space-x-4 md:space-x-6">
                         
                         <div class="bracket-col w-full md:w-1/5">
-                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center no-print">Round 1: Initial Values</h3>
+                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center hidden no-print">Round 1: Initial Values</h3>
                             <div class="space-y-2 mb-4">
                                 <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Match 1</label>
                                 <input type="text" id="bracket-initial-1a" placeholder="Value 1" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
@@ -326,7 +373,7 @@
                         </div>
                         
                         <div class="bracket-col w-full md:w-1/5">
-                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center no-print">Round 2: Winners</h3>
+                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center hidden no-print">Round 2: Winners</h3>
                             <div class="space-y-8">
                                 <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match 1)</label>
                                 <input type="text" id="bracket-r1-1" placeholder="Winner" class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
@@ -342,7 +389,7 @@
                         </div>
                         
                         <div class="bracket-col w-full md:w-1/5">
-                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center no-print">Round 3: Elite 8</h3>
+                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center hidden no-print">Round 3: Elite 8</h3>
                             <div class="space-y-16 py-8">
                                 <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Matches 1 & 2)</label>
                                 <input type="text" id="bracket-r2-1" placeholder="Winner" class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input" required>
@@ -354,7 +401,7 @@
                         </div>
                         
                         <div class="bracket-col w-full md:w-1/5">
-                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center no-print">Round 4: Final 4</h3>
+                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center hidden no-print">Round 4: Final 4</h3>
                             <div class="space-y-32 py-16">
                                 <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Matches 1-4)</label>
                                 <input type="text" id="bracket-r3-1" placeholder="Winner" class="w-full p-2 border-2 border-brand-dark-pink rounded-lg value-input bg-brand-dark-pink/20 text-sm bracket-input" required>
@@ -364,7 +411,7 @@
                         </div>
                         
                         <div class="bracket-col w-full md:w-1/5 justify-center">
-                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center no-print">Final Round</h3>
+                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center hidden no-print">Final Round</h3>
                             <div class="space-y-6 py-24">
                                 <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Your TOP Value</label>
                                 <input type="text" id="bracket-final-winner" placeholder="TOP VALUE" class="w-full p-3 text-center font-bold border-4 border-brand-yellow rounded-lg value-input bg-brand-yellow/20 bracket-input" required>
@@ -483,7 +530,7 @@
                 contactFormSection.classList.add('hidden');
                 powerValuesSection.classList.remove('hidden');
                 updateProgress(1);
-                powerValuesSection.scrollIntoView({ behavior: 'smooth' });
+                powerValuesSection.scroll-view({ behavior: 'smooth' });
             });
 
             // Values selection submission
@@ -508,7 +555,7 @@
                 powerValuesSection.classList.add('hidden');
                 hierarchySection.classList.remove('hidden');
                 updateProgress(2);
-                hierarchySection.scrollIntoView({ behavior: 'smooth' });
+                hierarchySection.scroll-view({ behavior: 'smooth' });
             });
 
             // Hierarchy submission
