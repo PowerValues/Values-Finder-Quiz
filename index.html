@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Lato:wght@700;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Lato:wght@700;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         // Configure Tailwind CSS with the custom brand color palette
@@ -38,87 +41,126 @@
             padding: 0;
             background: linear-gradient(135deg, #fffbfd 0%, #f8f4ff 100%);
         }
+
         main {
             flex-grow: 1;
         }
-        h1, h2, h3 {
+
+        h1,
+        h2,
+        h3 {
             font-family: 'Lato', sans-serif;
             font-weight: 900;
         }
+
         .playbook-container {
             max-width: 1000px;
             margin: auto;
         }
+
         .value-input {
             transition: all 0.3s ease;
         }
+
         .value-input:focus {
             transform: scale(1.02);
             box-shadow: 0 0 15px rgba(95, 163, 176, 0.4);
             border-color: #5fa3b0;
         }
+
         .notification {
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
+
         .validation-error {
             border-color: #ef4444;
             box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
         }
+
         .bracket-col {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
             flex-grow: 1;
         }
+
         .card-hover {
             transition: all 0.3s ease;
         }
+
         .card-hover:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+
         .value-card {
             transition: all 0.3s ease;
             cursor: pointer;
         }
+
         .value-card:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
+
         .value-card.selected {
             background: linear-gradient(135deg, #5e253a 0%, #853256 100%);
             color: white;
             border-color: #5e253a;
         }
+
         .section-icon {
             font-size: 2rem;
             margin-bottom: 1rem;
             color: #5fa3b0;
         }
+
         .floating {
             animation: float 6s ease-in-out infinite;
         }
+
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
         }
-        
+
         /* Animation for submit button highlight */
         @keyframes pulse-animation {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(140, 50, 86, 0.7); }
-            50% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(140, 50, 86, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(140, 50, 86, 0); }
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(140, 50, 86, 0.7);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 15px rgba(140, 50, 86, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(140, 50, 86, 0);
+            }
         }
+
         .pulse-highlight {
             animation: pulse-animation 1.5s ease-out;
         }
-        
+
         @media print {
             body {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
+
             .no-print {
                 display: none;
             }
@@ -137,6 +179,7 @@
             justify-content: center;
             align-items: center;
         }
+
         .modal-content {
             background-color: white;
             padding: 2rem;
@@ -146,6 +189,7 @@
             text-align: center;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
+
         .modal-close {
             position: absolute;
             top: 10px;
@@ -163,6 +207,7 @@
             border-radius: 4px;
             margin: 20px 0;
         }
+
         .progress-bar {
             height: 100%;
             background: linear-gradient(135deg, #5e253a 0%, #853256 100%);
@@ -187,19 +232,19 @@
                 margin-bottom: 0;
             }
 
-            .bracket-col > div {
+            .bracket-col>div {
                 margin-bottom: 1rem;
             }
 
-            .bracket-col > div.space-y-8,
-            .bracket-col > div.space-y-16,
-            .bracket-col > div.space-y-32,
-            .bracket-col > div.space-y-6 {
+            .bracket-col>div.space-y-8,
+            .bracket-col>div.space-y-16,
+            .bracket-col>div.space-y-32,
+            .bracket-col>div.space-y-6 {
                 padding-top: 0;
                 padding-bottom: 0;
             }
 
-            .bracket-col > div:not(:last-child) {
+            .bracket-col>div:not(:last-child) {
                 border-bottom: 1px dashed #e0e0e0;
                 padding-bottom: 1rem;
             }
@@ -212,7 +257,7 @@
                 margin-top: 1rem;
             }
         }
-        
+
         /* Desktop-specific styling for alignment */
         @media (min-width: 768px) {
             .bracket-title-container {
@@ -234,20 +279,24 @@
             /* Fine-tune alignment for titles relative to their content columns */
             .bracket-title-initial {
                 text-align: left;
-                padding-left: 0; 
+                padding-left: 0;
             }
+
             .bracket-title-r1 {
                 text-align: left;
                 padding-left: 0;
             }
+
             .bracket-title-r2 {
                 text-align: left;
                 padding-left: 0;
             }
+
             .bracket-title-r3 {
                 text-align: left;
                 padding-left: 0;
             }
+
             .bracket-title-final {
                 text-align: left;
                 padding-left: 0;
@@ -255,11 +304,13 @@
         }
     </style>
 </head>
+
 <body class="bg-brand-off-white text-brand-maroon">
 
     <header class="w-full flex justify-center py-2 bg-white">
         <div class="text-center">
-            <img src="images/Power Values logo with tagline.png" alt="Power Values Logo" class="mx-auto h-36 w-auto mb-2">
+            <img src="images/Power Values logo with tagline.png" alt="Power Values Logo"
+                class="mx-auto h-36 w-auto mb-2">
             <h1 class="text-4xl md:text-5xl font-bold text-brand-dark-teal">The Power Values Playbook</h1>
             <p class="text-base md:text-lg text-brand-maroon mt-2">Your Guide to a Life of Alignment & Purpose</p>
         </div>
@@ -277,23 +328,33 @@
                     <i class="fas fa-user-circle"></i>
                 </div>
                 <h2 class="text-3xl font-bold text-brand-maroon mb-2">Step 1: Your Information</h2>
-                <p class="text-lg text-gray-600">Enter your information to get started with your Power Values journey.</p>
+                <p class="text-lg text-gray-600">Enter your information to get started with your Power Values journey.
+                </p>
             </div>
-            
+
             <form id="contact-form" class="space-y-5">
                 <div>
-                    <label for="name" class="block text-brand-dark-teal font-bold mb-2"><i class="fas fa-user text-brand-teal mr-2"></i>Name</label>
-                    <input type="text" id="name" name="name" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal" required>
+                    <label for="name" class="block text-brand-dark-teal font-bold mb-2"><i
+                            class="fas fa-user text-brand-teal mr-2"></i>Name</label>
+                    <input type="text" id="name" name="name"
+                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                        required>
                 </div>
                 <div>
-                    <label for="email" class="block text-brand-dark-teal font-bold mb-2"><i class="fas fa-envelope text-brand-teal mr-2"></i>Email</label>
-                    <input type="email" id="email" name="email" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal" required>
+                    <label for="email" class="block text-brand-dark-teal font-bold mb-2"><i
+                            class="fas fa-envelope text-brand-teal mr-2"></i>Email</label>
+                    <input type="email" id="email" name="email"
+                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                        required>
                 </div>
                 <div>
-                    <label for="phone" class="block text-brand-dark-teal font-bold mb-2"><i class="fas fa-phone text-brand-teal mr-2"></i>Phone Number (Optional)</label>
-                    <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal">
+                    <label for="phone" class="block text-brand-dark-teal font-bold mb-2"><i
+                            class="fas fa-phone text-brand-teal mr-2"></i>Phone Number (Optional)</label>
+                    <input type="tel" id="phone" name="phone"
+                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-teal">
                 </div>
-                <button type="button" id="contact-submit" class="w-full bg-brand-dark-pink text-white font-bold py-3 px-6 rounded-lg hover:bg-brand-maroon transition-all duration-300 transform hover:scale-[1.02] shadow-md flex items-center justify-center">
+                <button type="button" id="contact-submit"
+                    class="w-full bg-brand-dark-pink text-white font-bold py-3 px-6 rounded-lg hover:bg-brand-maroon transition-all duration-300 transform hover:scale-[1.02] shadow-md flex items-center justify-center">
                     <i class="fas fa-arrow-right mr-2"></i> Continue to Values Selection
                 </button>
             </form>
@@ -308,15 +369,18 @@
                     <h2 class="text-3xl font-bold text-brand-maroon mb-2">Step 2: Select Your Core Values</h2>
                     <p class="text-lg text-gray-600">Select your top 10 values from the list below</p>
                 </div>
-                
+
                 <div class="bg-brand-teal/10 p-4 rounded-lg mb-6">
-                    <p class="text-brand-dark-teal text-center"><i class="fas fa-info-circle mr-2"></i>You've selected <span id="selected-count">0</span> of 10 values</p>
+                    <p class="text-brand-dark-teal text-center"><i class="fas fa-info-circle mr-2"></i>You've selected
+                        <span id="selected-count">0</span> of 10 values
+                    </p>
                 </div>
-                
+
                 <div id="values-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 text-center">
-                    </div>
-                
-                <button id="values-submit" class="mt-6 w-full bg-brand-dark-pink text-white font-bold py-3 px-6 rounded-lg hover:bg-brand-maroon transition-all duration-300 transform hover:scale-[1.02] shadow-md flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hidden">
+                </div>
+
+                <button id="values-submit"
+                    class="mt-6 w-full bg-brand-dark-pink text-white font-bold py-3 px-6 rounded-lg hover:bg-brand-maroon transition-all duration-300 transform hover:scale-[1.02] shadow-md flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hidden">
                     <i class="fas fa-arrow-right mr-2"></i> Continue to Value Hierarchy
                 </button>
             </div>
@@ -329,12 +393,14 @@
                         <i class="fas fa-sitemap"></i>
                     </div>
                     <h2 class="text-3xl font-bold text-brand-maroon mb-2">Step 3: Map Your Value Hierarchy</h2>
-                    <p class="text-lg text-gray-600">Enter your selected values in the bracket below to prioritize them</p>
+                    <p class="text-lg text-gray-600">Enter your selected values in the bracket below to prioritize them
+                    </p>
                 </div>
-                
+
                 <div class="w-full p-6 bg-brand-teal/10 rounded-xl border border-brand-teal/30">
-                    <p class="text-center text-brand-dark-teal font-medium mb-6">Start with your ten core values. Pit them against each other in a tournament to discover what truly matters most.</p>
-                    
+                    <p class="text-center text-brand-dark-teal font-medium mb-6">Start with your ten core values. Pit
+                        them against each other in a tournament to discover what truly matters most.</p>
+
                     <div class="bracket-title-container hidden md:flex">
                         <h3 class="bracket-title bracket-title-initial">Round 1: Values</h3>
                         <h3 class="bracket-title bracket-title-r1">Round 2: Winners</h3>
@@ -344,87 +410,145 @@
                     </div>
 
                     <div class="bracket-container flex items-stretch space-x-4 md:space-x-6">
-                        
+
                         <div class="bracket-col w-full md:w-1/5">
-                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center hidden no-print">Round 1: Initial Values</h3>
+                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center hidden no-print">Round 1:
+                                Initial Values</h3>
                             <div class="space-y-2 mb-4">
                                 <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Match 1</label>
-                                <input type="text" id="bracket-initial-1a" placeholder="Value 1" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
-                                <input type="text" id="bracket-initial-1b" placeholder="Value 2" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <input type="text" id="bracket-initial-1a" placeholder="Value 1"
+                                    class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input"
+                                    required>
+                                <input type="text" id="bracket-initial-1b" placeholder="Value 2"
+                                    class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input"
+                                    required>
                             </div>
                             <div class="space-y-2 mb-4">
                                 <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Match 2</label>
-                                <input type="text" id="bracket-initial-2a" placeholder="Value 3" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
-                                <input type="text" id="bracket-initial-2b" placeholder="Value 4" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <input type="text" id="bracket-initial-2a" placeholder="Value 3"
+                                    class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input"
+                                    required>
+                                <input type="text" id="bracket-initial-2b" placeholder="Value 4"
+                                    class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input"
+                                    required>
                             </div>
                             <div class="space-y-2 mb-4">
                                 <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Match 3</label>
-                                <input type="text" id="bracket-initial-3a" placeholder="Value 5" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
-                                <input type="text" id="bracket-initial-3b" placeholder="Value 6" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <input type="text" id="bracket-initial-3a" placeholder="Value 5"
+                                    class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input"
+                                    required>
+                                <input type="text" id="bracket-initial-3b" placeholder="Value 6"
+                                    class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input"
+                                    required>
                             </div>
                             <div class="space-y-2 mb-4">
                                 <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Match 4</label>
-                                <input type="text" id="bracket-initial-4a" placeholder="Value 7" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
-                                <input type="text" id="bracket-initial-4b" placeholder="Value 8" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <input type="text" id="bracket-initial-4a" placeholder="Value 7"
+                                    class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input"
+                                    required>
+                                <input type="text" id="bracket-initial-4b" placeholder="Value 8"
+                                    class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input"
+                                    required>
                             </div>
                             <div class="space-y-2">
                                 <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Match 5</label>
-                                <input type="text" id="bracket-initial-5a" placeholder="Value 9" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
-                                <input type="text" id="bracket-initial-5b" placeholder="Value 10" class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input" required>
+                                <input type="text" id="bracket-initial-5a" placeholder="Value 9"
+                                    class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input"
+                                    required>
+                                <input type="text" id="bracket-initial-5b" placeholder="Value 10"
+                                    class="w-full p-2 border border-gray-300 rounded-lg value-input text-sm bracket-input"
+                                    required>
                             </div>
                         </div>
-                        
+
                         <div class="bracket-col w-full md:w-1/5">
-                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center hidden no-print">Round 2: Winners</h3>
+                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center hidden no-print">Round 2:
+                                Winners</h3>
                             <div class="space-y-8">
-                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match 1)</label>
-                                <input type="text" id="bracket-r1-1" placeholder="Winner" class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
-                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match 2)</label>
-                                <input type="text" id="bracket-r1-2" placeholder="Winner" class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
-                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match 3)</label>
-                                <input type="text" id="bracket-r1-3" placeholder="Winner" class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
-                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match 4)</label>
-                                <input type="text" id="bracket-r1-4" placeholder="Winner" class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
-                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match 5)</label>
-                                <input type="text" id="bracket-r1-5" placeholder="Winner" class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match
+                                    1)</label>
+                                <input type="text" id="bracket-r1-1" placeholder="Winner"
+                                    class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input"
+                                    required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match
+                                    2)</label>
+                                <input type="text" id="bracket-r1-2" placeholder="Winner"
+                                    class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input"
+                                    required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match
+                                    3)</label>
+                                <input type="text" id="bracket-r1-3" placeholder="Winner"
+                                    class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input"
+                                    required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match
+                                    4)</label>
+                                <input type="text" id="bracket-r1-4" placeholder="Winner"
+                                    class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input"
+                                    required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Winner (Match
+                                    5)</label>
+                                <input type="text" id="bracket-r1-5" placeholder="Winner"
+                                    class="w-full p-2 border-2 border-brand-teal rounded-lg value-input bg-brand-teal/20 text-sm bracket-input"
+                                    required>
                             </div>
                         </div>
-                        
+
                         <div class="bracket-col w-full md:w-1/5">
-                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center hidden no-print">Round 3: Elite 8</h3>
+                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center hidden no-print">Round 3:
+                                Elite 8</h3>
                             <div class="space-y-16 py-8">
                                 <label class="block text-brand-dark-teal text-sm font-semibold mb-1"></label>
-                                <input type="text" id="bracket-r2-1" placeholder="Winner" class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input" required>
+                                <input type="text" id="bracket-r2-1" placeholder="Winner"
+                                    class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input"
+                                    required>
                                 <label class="block text-brand-dark-teal text-sm font-semibold mb-1"></label>
-                                <input type="text" id="bracket-r2-2" placeholder="Winner" class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input" required>
+                                <input type="text" id="bracket-r2-2" placeholder="Winner"
+                                    class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input"
+                                    required>
                                 <label class="block text-brand-dark-teal text-sm font-semibold mb-1"></label>
-                                <input type="text" id="bracket-r2-3" placeholder="Bye" class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input" required>
+                                <input type="text" id="bracket-r2-3" placeholder="Bye"
+                                    class="w-full p-2 border-2 border-brand-pink rounded-lg value-input bg-brand-pink/20 text-sm bracket-input"
+                                    required>
                             </div>
                         </div>
-                        
+
                         <div class="bracket-col w-full md:w-1/5">
-                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center hidden no-print">Round 4: Final 4</h3>
+                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center hidden no-print">Round 4:
+                                Final 4</h3>
                             <div class="space-y-32 py-16">
                                 <label class="block text-brand-dark-teal text-sm font-semibold mb-1"></label>
-                                <input type="text" id="bracket-r3-1" placeholder="Winner" class="w-full p-2 border-2 border-brand-dark-pink rounded-lg value-input bg-brand-dark-pink/20 text-sm bracket-input" required>
+                                <input type="text" id="bracket-r3-1" placeholder="Winner"
+                                    class="w-full p-2 border-2 border-brand-dark-pink rounded-lg value-input bg-brand-dark-pink/20 text-sm bracket-input"
+                                    required>
                                 <label class="block text-brand-dark-teal text-sm font-semibold mb-1"></label>
-                                <input type="text" id="bracket-r3-2" placeholder="Winner" class="w-full p-2 border-2 border-brand-dark-pink rounded-lg value-input bg-brand-dark-pink/20 text-sm bracket-input" required>
+                                <input type="text" id="bracket-r3-2" placeholder="Winner"
+                                    class="w-full p-2 border-2 border-brand-dark-pink rounded-lg value-input bg-brand-dark-pink/20 text-sm bracket-input"
+                                    required>
                             </div>
                         </div>
-                        
+
                         <div class="bracket-col w-full md:w-1/5 justify-center">
-                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center hidden no-print">Final Round</h3>
+                            <h3 class="font-bold text-lg text-brand-dark-teal mb-4 text-center hidden no-print">Final
+                                Round</h3>
                             <div class="space-y-6 py-24">
-                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Your TOP Value</label>
-                                <input type="text" id="bracket-final-winner" placeholder="TOP VALUE" class="w-full p-3 text-center font-bold border-4 border-brand-yellow rounded-lg value-input bg-brand-yellow/20 bracket-input" required>
-                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Your Runner Up</label>
-                                <input type="text" id="bracket-second-place" placeholder="Runner Up" class="w-full p-2 text-center border-2 border-red-300 rounded-lg value-input bg-red-100/50 text-sm bracket-input" required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Your TOP
+                                    Value</label>
+                                <input type="text" id="bracket-final-winner" placeholder="TOP VALUE"
+                                    class="w-full p-3 text-center font-bold border-4 border-brand-yellow rounded-lg value-input bg-brand-yellow/20 bracket-input"
+                                    required>
+                                <label class="block text-brand-dark-teal text-sm font-semibold mb-1">Your Runner
+                                    Up</label>
+                                <input type="text" id="bracket-second-place" placeholder="Runner Up"
+                                    class="w-full p-2 text-center border-2 border-red-300 rounded-lg value-input bg-red-100/50 text-sm bracket-input"
+                                    required>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <button id="hierarchy-submit" class="mt-6 w-full bg-brand-dark-pink text-white font-bold py-3 px-6 rounded-lg hover:bg-brand-maroon transition-all duration-300 transform hover:scale-[1.02] shadow-md flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                <button id="hierarchy-submit"
+                    class="mt-6 w-full bg-brand-dark-pink text-white font-bold py-3 px-6 rounded-lg hover:bg-brand-maroon transition-all duration-300 transform hover:scale-[1.02] shadow-md flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled>
                     <i class="fas fa-check-circle mr-2"></i> Complete Your Power Values Assessment
                 </button>
             </div>
@@ -438,8 +562,10 @@
                 </div>
                 <h2 class="text-2xl font-bold text-brand-dark-teal mb-4">Thank You!</h2>
                 <p class="text-brand-maroon mb-4">Your Power Values assessment has been successfully submitted.</p>
-                <p class="text-brand-dark-teal font-medium mb-6">If you don't see our email, please check your spam folder.</p>
-                <button id="modal-button" class="bg-brand-dark-pink text-white font-bold py-2 px-6 rounded-lg hover:bg-brand-maroon transition-colors">
+                <p class="text-brand-dark-teal font-medium mb-6">If you don't see our email, please check your spam
+                    folder.</p>
+                <button id="modal-button"
+                    class="bg-brand-dark-pink text-white font-bold py-2 px-6 rounded-lg hover:bg-brand-maroon transition-colors">
                     Done
                 </button>
             </div>
@@ -452,7 +578,8 @@
         </div>
     </footer>
 
-    <div id="error-notification" class="notification fixed bottom-5 right-5 bg-red-600 text-white py-3 px-5 rounded-lg shadow-xl opacity-0 transform translate-y-3">
+    <div id="error-notification"
+        class="notification fixed bottom-5 right-5 bg-red-600 text-white py-3 px-5 rounded-lg shadow-xl opacity-0 transform translate-y-3">
     </div>
 
     <script>
@@ -496,7 +623,7 @@
             const modalClose = document.getElementById('modal-close');
             const modalButton = document.getElementById('modal-button');
             const progressBar = document.getElementById('progress-bar');
-            
+
             // Update progress bar
             function updateProgress(step) {
                 const progressPercentage = (step / 3) * 100;
@@ -508,27 +635,27 @@
                 const valueElement = document.createElement('div');
                 valueElement.textContent = value;
                 valueElement.className = 'value-card bg-white p-3 rounded-xl border border-brand-teal shadow-sm';
-                valueElement.addEventListener('click', function() {
+                valueElement.addEventListener('click', function () {
                     toggleValueSelection(valueElement, value);
                 });
                 valuesGrid.appendChild(valueElement);
             });
 
             // Contact form submission
-            contactSubmitBtn.addEventListener('click', function() {
+            contactSubmitBtn.addEventListener('click', function () {
                 const name = document.getElementById('name').value.trim();
                 const email = document.getElementById('email').value.trim();
-                
+
                 if (!name || !email) {
                     showNotification('error', 'Please fill in all required fields.');
                     return;
                 }
-                
+
                 if (!isValidEmail(email)) {
                     showNotification('error', 'Please enter a valid email address.');
                     return;
                 }
-                
+
                 contactFormSection.classList.add('hidden');
                 powerValuesSection.classList.remove('hidden');
                 updateProgress(1);
@@ -536,12 +663,12 @@
             });
 
             // Values selection submission
-            valuesSubmitBtn.addEventListener('click', function() {
+            valuesSubmitBtn.addEventListener('click', function () {
                 if (selectedValues.length !== 10) {
                     showNotification('error', 'Please select exactly 10 values.');
                     return;
                 }
-                
+
                 // Populate the bracket with selected values
                 document.getElementById(`bracket-initial-1a`).value = selectedValues[0] || '';
                 document.getElementById(`bracket-initial-1b`).value = selectedValues[1] || '';
@@ -553,7 +680,7 @@
                 document.getElementById(`bracket-initial-4b`).value = selectedValues[7] || '';
                 document.getElementById(`bracket-initial-5a`).value = selectedValues[8] || '';
                 document.getElementById(`bracket-initial-5b`).value = selectedValues[9] || '';
-                
+
                 powerValuesSection.classList.add('hidden');
                 hierarchySection.classList.remove('hidden');
                 updateProgress(2);
@@ -561,11 +688,11 @@
             });
 
             // Hierarchy submission
-            hierarchySubmitBtn.addEventListener('click', function() {
+            hierarchySubmitBtn.addEventListener('click', function () {
                 // Validate all bracket fields are filled
                 const bracketInputs = document.querySelectorAll('.bracket-input');
                 let allFilled = true;
-                
+
                 bracketInputs.forEach(input => {
                     if (!input.value.trim()) {
                         input.classList.add('validation-error');
@@ -574,7 +701,7 @@
                         input.classList.remove('validation-error');
                     }
                 });
-                
+
                 if (!allFilled) {
                     showNotification('error', 'Please complete all fields in the bracket.');
                     return;
@@ -632,25 +759,47 @@
                     }
                 };
 
+                finalData.topValues = extractTopValues(finalData.selectedValues, finalData.valueHierarchy);
+
                 // Log the final object to the console for the backend developer
-                console.log('Final Data Object for Backend:', finalData);
-                
+                // console.log('Final Data Object for Backend:', finalData);
+
+                const data = {
+                    ...finalData,
+                    type: 'saveLiveQuizData',
+                }
+
+                fetch('https://backend-production-9294.up.railway.app/quiz/data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data),
+                }).then(async (res) => {
+                    const response = await res.json();
+                    if (response.userId) {
+                        window.location.href = `https://powervalues.github.io/power-values-book-page/index.html?id=${response.userId}`;
+                    } else {
+                        console.log("No userId");
+                    }
+                })
+
                 // For now, we will just show the modal directly since there's no backend
                 updateProgress(3);
                 thankYouModal.style.display = 'flex';
             });
 
             // Modal close handlers
-            modalClose.addEventListener('click', function() {
+            modalClose.addEventListener('click', function () {
                 thankYouModal.style.display = 'none';
             });
-            
-            modalButton.addEventListener('click', function() {
+
+            modalButton.addEventListener('click', function () {
                 thankYouModal.style.display = 'none';
             });
 
             // Close modal if clicked outside
-            window.addEventListener('click', function(event) {
+            window.addEventListener('click', function (event) {
                 if (event.target === thankYouModal) {
                     thankYouModal.style.display = 'none';
                 }
@@ -659,7 +808,7 @@
             // Enable hierarchy submit button when all bracket fields are filled
             const bracketInputs = document.querySelectorAll('.bracket-input');
             bracketInputs.forEach(input => {
-                input.addEventListener('input', function() {
+                input.addEventListener('input', function () {
                     checkBracketCompletion();
                 });
             });
@@ -677,15 +826,15 @@
                     showNotification('error', 'You can only select 10 values.');
                     return;
                 }
-                
+
                 // Select the value
                 element.classList.add('selected');
                 selectedValues.push(value);
             }
-            
+
             // Update selected count
             document.getElementById('selected-count').textContent = selectedValues.length;
-            
+
             // Show the button when 10 values are selected, hide otherwise
             const valuesSubmitBtn = document.getElementById('values-submit');
             if (selectedValues.length === 10) {
@@ -700,13 +849,13 @@
         function checkBracketCompletion() {
             const bracketInputs = document.querySelectorAll('.bracket-input');
             let allFilled = true;
-            
+
             bracketInputs.forEach(input => {
                 if (!input.value.trim()) {
                     allFilled = false;
                 }
             });
-            
+
             document.getElementById('hierarchy-submit').disabled = !allFilled;
         }
 
@@ -717,7 +866,7 @@
 
         function showNotification(type, message) {
             const notification = document.getElementById('error-notification');
-            
+
             notification.textContent = message;
             notification.classList.remove('opacity-0', 'translate-y-3');
             notification.classList.add('opacity-100', 'translate-y-0');
@@ -727,6 +876,31 @@
                 notification.classList.add('opacity-0', 'translate-y-3');
             }, 4000);
         }
+
+        function extractTopValues(selectedValues, valueHierarchy) {
+            const topValues = new Set();
+            topValues.add(valueHierarchy.finalResults.topValue);
+            topValues.add(valueHierarchy.finalResults.runnerUp);
+
+            const keys = Object.keys(valueHierarchy);
+
+            for (let i = keys.length - 1; i >= 0; i--) {
+                const round = keys[i];
+                if (round !== 'round1' && round !== 'finalResults') {
+                    const keys = Object.keys(valueHierarchy[round]);
+                    for (let j = keys.length - 1; j >= 0; j--) {
+                        const winner = keys[j];
+                        topValues.add(valueHierarchy[round][winner])
+                    }
+                }
+            }
+            for (const value of selectedValues) {
+                topValues.add(value);
+            }
+
+            return [...topValues];
+        }
     </script>
 </body>
+
 </html>
